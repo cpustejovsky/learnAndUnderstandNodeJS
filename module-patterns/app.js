@@ -22,3 +22,5 @@ var Greet4 = require('./greet4');
 var grtr = new Greet4();
 grtr.greet();
 
+var Greet5 = require('./greet5');
+Greet5.greet();
