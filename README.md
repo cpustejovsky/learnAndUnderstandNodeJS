@@ -137,5 +137,120 @@ greet.spanish();
 
 You can also add `.json` files and the `require` function will do that for us as long as you specifically require `<file>.json`. This will allow you pass in JSON as JavaScript objects.
 
+## exports vs module.exports
 
+```javascript
+(function (exports, require, module, __filename, __dirname) {
+    var greet = function() {
+        console.log('Hello!');
+    };
+    module.exports = greet;
+});
 
+fn(module.exports, require, module, filename, dirname);
+
+return module.exports;
+```
+
+exports is short-hand for module.exports, they are both pointing towards the same point in memory.
+
+Why the two names then? Related to a quirk in JS about how Objects are passed within memory.
+
+require function returns module.exports which is a separate variable from exports which receives that value.
+
+Exports does not work for all the patterns we've seen so far.
+
+```javascript
+exports = function () {
+    console.log('What Hath God Wrought?');
+}
+
+console.log(exports);
+console.log(module.exports);
+```
+^ That code produces
+
+```javascript
+[Function]
+{}
+```
+
+So exports is a function now, but module.exports is still an empty object
+
+**So what's really happening?**
+![](exports-vs-module.exports/what-is-really-happening.png)
+
+So when the assignment operator is used on exports, it takes on that new value, leading to two different objects pointing to two different spots in memory.
+
+So what's returned from require? module.exports, so that's a problem. And you'll get an error if you try and invoke it like normal.
+
+So you can't change exports, but there is a way to mutate it without having this problem.
+
+Whatya wanna do is...
+
+```javascript
+exports.greet = function () {
+    console.log('What Hath God Wrought?');
+}
+
+console.log(exports);
+console.log(module.exports);
+```
+
+**T.Alicea's recommendation is**
+
+# JUST USE MODULE.EXPORTS! BE LAZY, FOR CRYING OUT LOUD!
+
+## Requiring Native (Core) Modules
+
+```javascript
+var util = require('util');
+
+var name = 'Tony';
+var greeting = util.format('Hello, %s', name);
+util.log(greeting);
+```
+
+Lots of interesting stuff that is already there. Definitely worth reading through the documentation.
+
+## Modules and ES6
+
+ES6 now has modules built-in.
+
+We should see things move from node modules to ES6 modules
+
+**For Example**
+greet.js
+```javascript
+export function greet() {
+    console.log('Hello');
+}
+```
+app.js
+```javascript
+import * as greetr from 'greet';
+greetr.greet();
+```
+
+## Conceptual Aside: Events
+
+**Event:** Something that has happened in our app that we can respond to.
+This is not limited to NodeJS. Found in many areas of software architecture and on many platforms.
+
+In Node, we actually talk about two different kinds of events, but we tend to conflate the two.
+On one hand you have
+* **System Events** from the C++ Core (libuv): files, data from the internet, things that are !JavaScript
+* **Custom Events** from the Event Emitter inside the JavasScript Core.
+
+The Event Emitter is where we have custom events
+
+ System Events is dealing with lower-level stuff that is closer to the metal.
+ 
+ Very often the C++ core wraps its code in JS to make things easier.
+ 
+### The JavaScript is faking events!!!
+
+## So What Is Actually Going On?
+
+We're attaching properties that are arrays of functions to an object and calling those events.
+We're calling them events because it makes it easier to think about them.
