@@ -670,4 +670,5 @@ readable.pipe(gzip).pipe(compressed);
 Both asynchronous methods and streams are performant.
 You should only do otherwise for thoughtful and intentional reasons!
 
+#HTTP and being a Web Server
 
