@@ -1,1 +1,16 @@
-//using this one as general practice until I see that I'll need a directory for the code examples in a given lecture(s)
+function greet(callback) {
+    console.log('Hello');
+    var data = {
+        name: 'Charles Pustejovsky'
+    }
+    callback(data);
+}
+
+function callbackFuntion(data) {
+    console.log(`the function was invoked thanks to ${data.name}`);
+}
+
+greet(callbackFuntion);
+//RESULTS
+//Hello
+//the function was invoked thanks to Charles Pustejovsky

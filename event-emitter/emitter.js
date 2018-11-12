@@ -11,7 +11,8 @@ Emitter.prototype.on = function(type, listener) {
     //then start adding functions into that array
     this.events[type].push(listener);
 };
-
+// the emit method says that something happened; whoever is watching/listening
+// can respond when the event is emitted.
 Emitter.prototype.emit = function (type) {
     //check to see if ____ is a property on the object
     if (this.events[type]) {
