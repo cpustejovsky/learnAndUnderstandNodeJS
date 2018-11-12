@@ -671,4 +671,6 @@ Both asynchronous methods and streams are performant.
 You should only do otherwise for thoughtful and intentional reasons!
 
 #HTTP and being a Web Server
+##Conceptual Aside:
+###TCP/IP
 
