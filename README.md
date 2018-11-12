@@ -488,6 +488,8 @@ Usually this data is being moved through a...
 
 **Stream**: A sequence of data made available over time or pieces of data that eventually combine into a whole.
 
+It is broken into **chunks**(pieces of data that are sent through a stream)
+
 This allows us to process data as we go instead of waiting for it all to arrive.
 
 Example: streaming a video vs downloading a video.
@@ -581,3 +583,91 @@ greet(callbackFuntion);
 //Hello
 //the function was invoked thanks to Charles Pustejovsky
 ```
+
+##fs and read and write
+
+```javascript
+var fs = require('fs');
+
+var greet = fs.readFileSync(__dirname + '/greet.txt', 'utf8');
+console.log(greet);
+
+var greet2 = fs.readFile(__dirname + '/greet.txt',  'utf8',
+    //popular pattern in NodeJS called "Error-First Callbacks"
+    //all that means is that callbacks take an error object as their first paramter
+    //null if no error; otherwise, it will contain an object defining the error.
+    //This is a standard so we know in what order to place our parameter for our callbacks.
+    function(err, data) {
+        console.log(data);
+    });
+
+console.log("Done");
+```
+
+##Streams
+
+Streams **are** event emitters
+streams.js requires events and util and have Stream inherit from events
+
+Different types of streams:
+* Readable: can read data coming through
+* Writable: can send data to the stream, but can't read
+* Duplex: can do both
+* Transform: let's you change the data as it moves through the stream
+* PassThrough: *"a trivial implemtnation of a Transform stream simply passes the input bytes across to the output. Its purpose is primarily for examples and testing, but there are some use cases where stream.PassThrough is useful as a building block for novel sorts of streams."*
+
+Streams are merely an **Abstract (or Base) Class**:
+    A type of contructor you never work directly with, but inherit from.
+    We create new custom objects which inherit from the abstract class.
+    ...Like a platonic ideal?
+
+**NOTE:** Writable and Readable from the perspective of NodeJS!
+
+JavaScript Example:
+```javascript
+var fs = require('fs');
+
+var readable = fs.createReadStream(__dirname + '/greet.txt', {encoding: 'utf8', highWaterMark: 1024});
+
+var writable = fs.createWriteStream(__dirname + '/greetcopy.txt');
+
+readable.on('data', function(chunk) {
+    console.log(chunk);
+    writable.write(chunk);
+});
+```
+
+##Pipes
+
+Pipes are how you connect two streams by writing to one stream what is being rad from another.
+In NodeJS, you pipe from a Readable stream to a Writable stream.
+
+If the Writable stream is also Readable, you pipe to another Writable stream, allowing you to create a flow of streams.
+
+Pipe function writes to a stream (using the event listener) and returns the destination stream.
+
+Example:
+```javascript
+const fs = require('fs');
+const zlib = require('zlib');
+
+var readable = fs.createReadStream(__dirname + '/greet.txt');
+
+var writable = fs.createWriteStream(__dirname + '/greetcopy.txt');
+
+var compressed = fs.createWriteStream(__dirname + '/greet.txt.gz');
+
+var gzip = zlib.createGzip();
+
+readable.pipe(writable);
+//goes from stream to stream to stream, i.e. chaining
+//METHOD CHAINING
+//A method returns an object so we can keep calling more methods.
+//Sometimes it returns the parent object (called 'cascading') and sometimes it returns some other object.
+readable.pipe(gzip).pipe(compressed);
+```
+
+Both asynchronous methods and streams are performant.
+You should only do otherwise for thoughtful and intentional reasons!
+
+
