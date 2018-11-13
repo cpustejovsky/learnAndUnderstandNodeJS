@@ -673,4 +673,145 @@ You should only do otherwise for thoughtful and intentional reasons!
 #HTTP and being a Web Server
 ##Conceptual Aside:
 ###TCP/IP
+**Protocol:** A set of rules two sides aree on to use when communicating.
+Both the client and server are programmed to understand and use that particular set of rules.
+It's similar to a lingua franca.
 
+How do the client and server identify each other? how do they transfer stuff?
+
+**IP:** Will be the identifier for how we connect two computer systems together.
+
+Opens a **socket**. It's the line across which information flows from one computer to another.
+
+That information is usually structured within its own protocol (HTTP for web, FTP for files, SMTP for email, etc.)
+
+**TCP:** (Transmission Control Protocol) How data is transferred. 
+
+Take the information and split it and send it one piece at a time through the socket. The individual piece is called a **packet**.
+
+NodeJS can be used for any kind of server. The heart of any server is TCP/IP.
+
+This all looks similar to a stream because it's the same concept.
+
+NodeJS treats packets as a stream.
+
+##Conceptual Aside
+###Addresses and Ports
+**Port:** Once a computr receives a packet, how it knows what program to send it to.
+When a program is set up on the OS to receive packets from a particular port, it is said that the program is 'listening' to that port.
+
+###HTTP
+A set of rules (and a format) for data being transferred on the web. stands for 'HyperTest Transfer Protocol'. 
+It's a format (of various) defining data being transferred via TCP/IP.
+
+This is how we format a message. Like formatting a specific kind of document (resume, business letter, etc.)
+Example of HTTP request:
+```
+Connect www.google.com:443 HTTP/1.1
+Host: www.google.com
+Connection: keep-alive
+```
+ **Headers:** name values pairs that provide standards for the server and the browser
+Example of HTTP response:
+```
+(Status)HTTP/1.1 200 OK
+(Header)Content-Length: 44
+(Header)Content-Type: text/html
+
+(Body)<html><head>...</head></html>
+```
+
+The Content-Type is a **MIME type:** A standard for specifying the type of data being sent.
+Standard for *Multipurpose Internet Mail Extensions*
+Examples: application/json, text/html, image/jpeg
+
+##Hello World NodeJS
+
+```javascript
+const http = require('http');
+
+//http.createServer requires a callback function which is an event listener
+
+http.createServer(function (req, res) {
+
+    res.writeHead(200, { 'Content-Type' : 'text/plain' });
+    res.end('What hath God wrought?\n');
+
+}).listen(1337, '127.0.0.1');
+```
+
+##Outputting HTML and Templates
+
+**Template:** Text designed to be the basis for final text or content after being processed.
+There's usually some specific template language, so the template system knows how to replace placeholders with real values.
+
+```javascript
+const http = require('http');
+//to access the htm document
+const fs = require('fs');
+
+//http.createServer requires a callback function which is an event listener
+http.createServer(function (req, res) {
+
+    res.writeHead(200, { 'Content-Type' : 'text/html' });
+    var html = fs.readFileSync(__dirname + '/index.htm', 'utf8');
+    var message = 'Hello world...';
+    html = html.replace('{Message}', message);
+    res.end(html);
+
+}).listen(1337, '127.0.0.1');
+```
+
+##Streams and Performance
+
+Using pipes!
+
+```javascript
+const http = require('http');
+//to access the htm document
+const fs = require('fs');
+
+//http.createServer requires a callback function which is an event listener
+http.createServer(function (req, res) {
+
+    res.writeHead(200, { 'Content-Type' : 'text/html' });
+    fs.createReadStream(__dirname + '/index.htm').pipe(res);
+
+}).listen(1337, '127.0.0.1');
+```
+
+Since TCP/IP is a stream already, the browser is already used to this kind of thing.
+
+##Conceptual Aside:
+###APIs and Endpoints
+
+**API (Application Programming Interface):** 
+A set of tools for building a software application
+On the web, APIs are usually made available via a set of URLs which accept and send only data via HTTP and TCP/IP
+
+**Endpoint:** One url in a web API. Somtimes that endpoint does multiple things by making choices based on the HTTP
+request headers.
+
+##Outputting JSON
+
+**Serialize:** Translating an object into a format that can be store or transferred.
+JSON, CSV, XML, and other are popular.
+*Deserialize* is the opposite (converting the format back into an object).
+
+```javascript
+const http = require('http');
+//to access the htm document
+const fs = require('fs');
+
+//http.createServer requires a callback function which is an event listener
+http.createServer(function (req, res) {
+
+    res.writeHead(200, { 'Content-Type' : 'application/json' });
+    var obj = {
+        firstname: 'Charles',
+        lastname: 'Pustejovsky'
+    };
+    res.end(JSON.stringify(obj));
+
+}).listen(1337, '127.0.0.1');
+```
