@@ -21,6 +21,6 @@
     "moment": "^2.22.2"
   },
   "devDependencies": {
-    "jasmine-node": "^1.16.2"
+    "jasmine-node": "^2.0.1"
   }
 }
