@@ -1,0 +1,26 @@
+{
+  "name": "learn-and-understand-node-js",
+  "version": "1.0.0",
+  "description": "Notes and Examples about NodeJS",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cpustejovsky/learnAndUnderstandNodeJS.git"
+  },
+  "author": "cpustejovsky",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cpustejovsky/learnAndUnderstandNodeJS/issues"
+  },
+  "homepage": "https://github.com/cpustejovsky/learnAndUnderstandNodeJS#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "moment": "^2.22.2"
+  },
+  "devDependencies": {
+    "jasmine-node": "^1.16.2"
+  }
+}

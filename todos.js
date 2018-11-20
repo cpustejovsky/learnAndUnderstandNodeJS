@@ -2,3 +2,4 @@
 
 //TODO: Read Over and Understand NodeJS Core Modules
 //TODO: Look deeper into Events and the Event Emitter
+//TODO: read up on this http://expressjs.com/en/guide/routing.html

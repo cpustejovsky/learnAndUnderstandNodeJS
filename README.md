@@ -815,3 +815,103 @@ http.createServer(function (req, res) {
 
 }).listen(1337, '127.0.0.1');
 ```
+
+##Routing
+
+**Routing:** Mapping HTTP requests to content (whether the content exists on the server or not)
+
+The above examples only output one thing for any request because it defines just one response for any request.
+
+```javascript
+    if (req.url === '/') {
+        res.writeHead(200, { 'Content-Type' : 'text/html' });
+        fs.createReadStream(__dirname + '/index.htm').pipe(res);
+    }
+    else if (req.url === '/api') {
+        res.writeHead(200, { 'Content-Type' : 'application/json' });
+        var obj = {
+            firstname: 'Charles',
+            lastname: 'Pustejovsky'
+        };
+        res.end(JSON.stringify(obj));
+    }
+    else {
+        res.writeHead(404);
+        res.end();
+    }
+```
+
+#NPM: the Node Package Manager
+##Conceptual Aside: Packages and Package Managers
+A package is just code, a collection of code that works and that you can use in your code.
+It is managed and maintained by a... 
+**package management system:** Software that automates installing and updating packages. Deals with version you have or need, also helps you manage...
+**Dependencies:** Code that another set of code depends on to function. If you use that code in your app, it is a dependency. Your app depends on it.
+##Conceptual Aside: Semantic Versioning (semver)
+**Versioning:** Specifying what version of a set of code this is
+so others can track is a new version has come out. This allows software like NPM to watch for new features, or to watch for 'breaking changes'.
+The word 'semantic' implies that something conveys meaning.
+
+* **MAJOR.MINOR.PATCH**
+* **1.7.2 to 1.7.3**: Fixed some bugs. Your code will work fine
+* **1.7.2 to 1.8.0**: Added new features. Your code will work fine
+* **1.7.2 to 2.0.0**: Big changes. Your code will break (maybe).
+
+##npm and the npm registry: Other People's Code
+You can use npm to install packages that come from npmjs.com, the npm registry
+
+##init, nodemon, and package.json
+
+* `npm install <npm module> --save`
+* --save saves a reference in package.json to the dependency being installed
+* `"moment": "^2.22.2"` means update until a breaking change update
+* `~2.22.2` would just mean to only update patches but neither minor nor major updates
+* This is code doesn't store node_modules, just package.json
+* you just need to use require to access these npm modules.
+
+# Express
+## Installing and Initial Use
+* **Environment Variables:** global variables specific to the environment (server) our code is living in.
+    * Different servers can have different variable settings, and we can access those values in code.
+* **HTTP Method:** specifies the type of action the request wishes to make:
+    * GET, POST, DELETE, and others.
+    * Also called verbs.   
+
+## Static Files and Middleware
+* **Middleware:** Code that sits between two layers of software.
+    * In the case of Express, sitting between the request and the response.
+* **Static Files:** Files not processed by code in any way.
+
+## Templates and Template Engines
+
+Honestly... no use recreating [this guide](https://expressjs.com/en/guide/using-template-engines.html)
+
+
+
+
+
+
+
+
+
+
+
+#JavaScript, JSON, and Databases
+
+##Conceptual Aside: NoSQL and Documents
+
+NOSQL: A variety of technologies that are alternatives to tables and SQL
+One of those types is a *document* database and MongoDB is one of those models.
+Storing JSON as records in the database.
+
+SQL was very concerned with repeated information. Now that is less of a concern.
+
+Bigger concern is how often we need to change software.
+Adding new fields and the like. Hard for SQL databases.
+
+But when it's like storing data as if it were JSON, then adding fields and changing structure would be easier to do on the fly or in a pinch.
+
+We're going to sacrifice hard-drive space in order to...
+
+##MongoDB and Mongoose
+
