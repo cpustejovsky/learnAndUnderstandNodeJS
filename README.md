@@ -886,10 +886,32 @@ You can use npm to install packages that come from npmjs.com, the npm registry
 
 Honestly... no use recreating [this guide](https://expressjs.com/en/guide/using-template-engines.html)
 
+The templating language Tony uses in these lectures is [EJS](https://ejs.co/)
 
+```
+<script src="ejs.js"></script>
+<script>
+  let people = ['geddy', 'neil', 'alex'],
+      html = ejs.render('<%= people.join(", "); %>', {people: people});
+</script>
+```
 
+## Querystring and Post Parameters
 
+`GET /?key=value&...`
 
+##RESTful APIs and JSON
+* **REST:** Representational State Transfer => We decide that HTTP verbs and URLs mean something!
+* standardization FTW!!!
+```javascript
+app.get({'some-url/:id'});
+app.post({'some-url'});
+app.delete({'some-url/:id'});
+```
+
+##Structuring an App
+* [Express Application Generator](http://expressjs.com/en/starter/generator.html) is one option
+    * 
 
 
 

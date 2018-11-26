@@ -17,10 +17,10 @@
   },
   "homepage": "https://github.com/cpustejovsky/learnAndUnderstandNodeJS#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
     "express": "^4.16.4",
     "moment": "^2.22.2"
   },
-  "devDependencies": {
-    "jasmine-node": "^2.0.1"
-  }
+  "devDependencies": {}
 }
