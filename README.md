@@ -936,4 +936,15 @@ But when it's like storing data as if it were JSON, then adding fields and chang
 We're going to sacrifice hard-drive space in order to...
 
 ##MongoDB and Mongoose
+Learned by doing check out the directory
+
+##MEAN Stack!
+
+* MongoDB
+* Express
+* AngularJS
+* NodeJS
+
+* **Stack:**The combination of all technologies used to build a piece of software. Your database, your server side code, your client site code, and everything else.
+
 

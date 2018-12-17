@@ -65,5 +65,6 @@ app.use('/', function (req, res, next) {
 
 htmlController(app);
 
-    Person.find
-})
+apiController(app);
+
+app.listen(port);
