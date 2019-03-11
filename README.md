@@ -6,7 +6,7 @@ As much as I love taking handwritten notes, I need to get used to doing most thi
 
 Since my two goals after this are to create:
 
-1) An alarm clock butler for my raspberry pi
+1) An alarm clock **butler** for my raspberry pi
 2) To rebuild my website with Node.JS, Express.JS, and ReactJS/GastsbyJS so I can have a knowledge of the website that we're planning on.
 
 These files will act as solid template to create both of those.
@@ -911,12 +911,6 @@ app.delete({'some-url/:id'});
 
 ##Structuring an App
 * [Express Application Generator](http://expressjs.com/en/starter/generator.html) is one option
-    * 
-
-
-
-
-
 
 #JavaScript, JSON, and Databases
 
@@ -939,12 +933,41 @@ We're going to sacrifice hard-drive space in order to...
 Learned by doing check out the directory
 
 ##MEAN Stack!
-
-* MongoDB
-* Express
-* AngularJS
-* NodeJS
-
 * **Stack:**The combination of all technologies used to build a piece of software. Your database, your server side code, your client site code, and everything else.
+* the MEAN stack is an acronym
+  * MongoDB
+  * Express
+  * AngularJS
+  * NodeJS
+* They are all JavaScript or JavaScript-like
+* So these four technologies work together very naturally
+* 
 
+##AngularJS: Managing the Client
+* Establish some things about web browsers:
+  * Just like NodeJS, Browsers are written in C++
+    * Also JS engines whch allow extra features
+  * DOM:
+    * The structre browsers use to store and manage web pages
+    * 'Document Object Mode'
+      * Browsers give JS engine the ability to manipulate the DOM
+    * DOM does not live in the JS engine, it lives in the browser.
+  * Browser:
+    * Reads the HTML in the HTTP request as a string and converts it into a hierarchy called the DOM tree
+    * HTML is structure in a tree-like fashion, so this works well!
+    * the browser then renders the DOM, not the HTML string
+    * Also executes JavaScript with its JavaScript Engine
+    * **Browsers can have different expectations which makes it cumbersome to do client-side programming**
+      * Made worse when things get even bigger!
+      * Soooo much plumbing code (code just there to make the thing happen)
+* AngularJS helps devs structure our apps and also deal with that plumbing crap
+  * It's just a bunch of JavaScript code that someone else wrote.
+  * Angular is a course unto itself
+  * But we'll be using this to help understand the A in the MEAN stack and how javascript works on the browser vs on the server
+* `../public/js/app.js` is where browser JavaScript will live
+* CDNs can help with the load our server is dealing with.
+* the Angular script tag loads AngularJS on the browser, not on the server
+* In Tony's example, he sets it up where whatever you enter into a text-box is also displayed below. All he did was bind the HTML to an Angular controller (I think...). The point being is that this ability to manipulate the DOM is painless and easy for AngularJS, a client-side framework
+  * This would be much, much more difficult for NodeJS because when you enter the text, it would have to send a request to the server and the server would have to respond with the change to the DOM.
+  * 
 
