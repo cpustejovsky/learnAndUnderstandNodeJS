@@ -444,11 +444,11 @@ The run-time environment allow for asynchronous coding.
 
 Like the browser or, in this case, NodeJS
 
-##Conceptual Aside: Callbacks
+## Conceptual Aside: Callbacks
 A functon passed to some other function, which we assume will be invoked at some point.
 The function calls back' invoking the function you give it when it is done doing its work.
 
-##libuv, the event loop, and non-blocking asynchronous code execution
+## libuv, the event loop, and non-blocking asynchronous code execution
 
 Event Emitter is an object with properties which are arrays of functions.
 
@@ -461,8 +461,8 @@ Inside libuv is an event loop where libuv checks to see if the queue is empty to
 
 This also allows NodeJS code to be **non-blocking**: does other things without stopping your program from running. This is made possible by Node's asynchronous nature.
 
-##Conceptual Aside:
-###Streams and Buffers
+## Conceptual Aside:
+### Streams and Buffers
 **Buffer:** A temporary holding spot for data being moved from one place to another. It is intentionally limited in size because you don't want the data to be too big.
 
 You just want to get some data and then move it along. 
@@ -484,8 +484,8 @@ and then it happens again until the stream is complete.
 
 **Think about when a YouTube video is buffering!!!**
 
-##Conceptual Aside:
-###Binary Data, Character Sets, and Encoding
+## Conceptual Aside:
+### Binary Data, Character Sets, and Encoding
 
 **Binary Data**: Data stored in binary (sets of 1s and 0s);
 The core of the math that computers are based on. Each one or zero is called a bit or *'binary digit'*.
@@ -513,7 +513,7 @@ how many bits will we use to represent a number? In UTF-8, it represents 8 bits 
 
 **Historically, JavaScript has lacked a great deal of features for character encoding.** So NodeJS and V8 expands this and allows JavaScript to handle this better.
 
-##Buffers
+## Buffers
 
 ```javascript
 var buf = new Buffer('Hello', 'utf8');
@@ -528,8 +528,8 @@ console.log(buf.toString());// wollo
 //because the default length is set to those five characters in 'Hello', the 'wo' overrode the 'He'
 ```
 
-##JavaScript Aside
-###ES6 Typed Arrays
+## JavaScript Aside
+### ES6 Typed Arrays
 
 ```javascript
 //a byte is 8 bits; 8 bytes is 64 bits
@@ -543,8 +543,8 @@ view[2] = 45;
 console.log(view);//still Int32Array [ 5, 15 ] because it only has room for those two numbers
 ```
 
-##JavaScript Aside
-###Callbacks
+## JavaScript Aside
+### Callbacks
 A function passed to some other function, which we assume will be invoked at some point.
 The function 'calls back' by invoking the function you give it when it is done doing its work.
 
@@ -567,7 +567,7 @@ greet(callbackFuntion);
 //the function was invoked thanks to Charles Pustejovsky
 ```
 
-##fs and read and write
+## fs and read and write
 
 ```javascript
 var fs = require('fs');
@@ -587,7 +587,7 @@ var greet2 = fs.readFile(__dirname + '/greet.txt',  'utf8',
 console.log("Done");
 ```
 
-##Streams
+## Streams
 
 Streams **are** event emitters
 streams.js requires events and util and have Stream inherit from events
@@ -620,7 +620,7 @@ readable.on('data', function(chunk) {
 });
 ```
 
-##Pipes
+## Pipes
 
 Pipes are how you connect two streams by writing to one stream what is being rad from another.
 In NodeJS, you pipe from a Readable stream to a Writable stream.
@@ -653,9 +653,9 @@ readable.pipe(gzip).pipe(compressed);
 Both asynchronous methods and streams are performant.
 You should only do otherwise for thoughtful and intentional reasons!
 
-#HTTP and being a Web Server
-##Conceptual Aside:
-###TCP/IP
+# HTTP and being a Web Server
+## Conceptual Aside:
+### TCP/IP
 **Protocol:** A set of rules two sides aree on to use when communicating.
 Both the client and server are programmed to understand and use that particular set of rules.
 It's similar to a lingua franca.
@@ -678,12 +678,12 @@ This all looks similar to a stream because it's the same concept.
 
 NodeJS treats packets as a stream.
 
-##Conceptual Aside
-###Addresses and Ports
+## Conceptual Aside
+### Addresses and Ports
 **Port:** Once a computr receives a packet, how it knows what program to send it to.
 When a program is set up on the OS to receive packets from a particular port, it is said that the program is 'listening' to that port.
 
-###HTTP
+### HTTP
 A set of rules (and a format) for data being transferred on the web. stands for 'HyperTest Transfer Protocol'. 
 It's a format (of various) defining data being transferred via TCP/IP.
 
@@ -708,7 +708,7 @@ The Content-Type is a **MIME type:** A standard for specifying the type of data 
 Standard for *Multipurpose Internet Mail Extensions*
 Examples: application/json, text/html, image/jpeg
 
-##Hello World NodeJS
+## Hello World NodeJS
 
 ```javascript
 const http = require('http');
@@ -723,7 +723,7 @@ http.createServer(function (req, res) {
 }).listen(1337, '127.0.0.1');
 ```
 
-##Outputting HTML and Templates
+## Outputting HTML and Templates
 
 **Template:** Text designed to be the basis for final text or content after being processed.
 There's usually some specific template language, so the template system knows how to replace placeholders with real values.
@@ -745,7 +745,7 @@ http.createServer(function (req, res) {
 }).listen(1337, '127.0.0.1');
 ```
 
-##Streams and Performance
+## Streams and Performance
 
 Using pipes!
 
@@ -765,8 +765,8 @@ http.createServer(function (req, res) {
 
 Since TCP/IP is a stream already, the browser is already used to this kind of thing.
 
-##Conceptual Aside:
-###APIs and Endpoints
+## Conceptual Aside:
+### APIs and Endpoints
 
 **API (Application Programming Interface):** 
 A set of tools for building a software application
@@ -775,7 +775,7 @@ On the web, APIs are usually made available via a set of URLs which accept and s
 **Endpoint:** One url in a web API. Somtimes that endpoint does multiple things by making choices based on the HTTP
 request headers.
 
-##Outputting JSON
+## Outputting JSON
 
 **Serialize:** Translating an object into a format that can be store or transferred.
 JSON, CSV, XML, and other are popular.
@@ -799,7 +799,7 @@ http.createServer(function (req, res) {
 }).listen(1337, '127.0.0.1');
 ```
 
-##Routing
+## Routing
 
 **Routing:** Mapping HTTP requests to content (whether the content exists on the server or not)
 
@@ -824,13 +824,13 @@ The above examples only output one thing for any request because it defines just
     }
 ```
 
-#NPM: the Node Package Manager
-##Conceptual Aside: Packages and Package Managers
+# NPM: the Node Package Manager
+## Conceptual Aside: Packages and Package Managers
 A package is just code, a collection of code that works and that you can use in your code.
 It is managed and maintained by a... 
 **package management system:** Software that automates installing and updating packages. Deals with version you have or need, also helps you manage...
 **Dependencies:** Code that another set of code depends on to function. If you use that code in your app, it is a dependency. Your app depends on it.
-##Conceptual Aside: Semantic Versioning (semver)
+## Conceptual Aside: Semantic Versioning (semver)
 **Versioning:** Specifying what version of a set of code this is
 so others can track is a new version has come out. This allows software like NPM to watch for new features, or to watch for 'breaking changes'.
 The word 'semantic' implies that something conveys meaning.
@@ -840,10 +840,10 @@ The word 'semantic' implies that something conveys meaning.
 * **1.7.2 to 1.8.0**: Added new features. Your code will work fine
 * **1.7.2 to 2.0.0**: Big changes. Your code will break (maybe).
 
-##npm and the npm registry: Other People's Code
+## npm and the npm registry: Other People's Code
 You can use npm to install packages that come from npmjs.com, the npm registry
 
-##init, nodemon, and package.json
+## init, nodemon, and package.json
 
 * `npm install <npm module> --save`
 * --save saves a reference in package.json to the dependency being installed
@@ -883,7 +883,7 @@ The templating language Tony uses in these lectures is [EJS](https://ejs.co/)
 
 `GET /?key=value&...`
 
-##RESTful APIs and JSON
+## RESTful APIs and JSON
 * **REST:** Representational State Transfer => We decide that HTTP verbs and URLs mean something!
 * standardization FTW!!!
 ```javascript
@@ -892,12 +892,12 @@ app.post({'some-url'});
 app.delete({'some-url/:id'});
 ```
 
-##Structuring an App
+## Structuring an App
 * [Express Application Generator](http://expressjs.com/en/starter/generator.html) is one option
 
-#JavaScript, JSON, and Databases
+# JavaScript, JSON, and Databases
 
-##Conceptual Aside: NoSQL and Documents
+## Conceptual Aside: NoSQL and Documents
 
 NOSQL: A variety of technologies that are alternatives to tables and SQL
 One of those types is a *document* database and MongoDB is one of those models.
@@ -912,10 +912,10 @@ But when it's like storing data as if it were JSON, then adding fields and chang
 
 We're going to sacrifice hard-drive space in order to...
 
-##MongoDB and Mongoose
+## MongoDB and Mongoose
 Learned by doing check out the directory
 
-##MEAN Stack!
+## MEAN Stack!
 * **Stack:**The combination of all technologies used to build a piece of software. Your database, your server side code, your client site code, and everything else.
 * the MEAN stack is an acronym
   * MongoDB
@@ -926,7 +926,7 @@ Learned by doing check out the directory
 * So these four technologies work together very naturally
 * 
 
-##AngularJS: Managing the Client
+## AngularJS: Managing the Client
 * Establish some things about web browsers:
   * Just like NodeJS, Browsers are written in C++
     * Also JS engines whch allow extra features
