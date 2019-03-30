@@ -1,26 +1,26 @@
 'use strict';
 
-var EventEmitter = require('events');
+const EventEmitter = require('events');
 
-class Greetr extends EventEmitter {
-    constructor() {
-        //has the same functionality as `EventEmitter.call(this);` provided you add `extends EventEmitter` after `class Greetr`
-        super();
-        this.greeting = 'Hello, world!';
-    }
-    greet(data) {
-        console.log(`${ this.greeting } \nnow for the data: ${ data }`);
-        this.emit('greet', data);
-    }
-}
+// class Greetr extends EventEmitter {
+//     constructor() {
+//         //has the same functionality as `EventEmitter.call(this);` provided you add `extends EventEmitter` after `class Greetr`
+//         super();
+//         this.greeting = 'Hello, world!';
+//     }
+//     greet(data) {
+//         console.log(`${ this.greeting } \nnow for the data: ${ data }`);
+//         this.emit('greet', data);
+//     }
+// }
 
-var greeter1 = new Greetr();
+// var greeter1 = new Greetr();
 
-greeter1.on('greet', function (data) {
-    console.log(`a greeting occurred! \nalso some data: ${ data }`);
-});
+// greeter1.on('greet', function (data) {
+//     console.log(`a greeting occurred! \nalso some data: ${ data }`);
+// });
 
-greeter1.greet("testing, testing");
+// greeter1.greet("testing, testing");
 
     //This is the OG way of creating an object
     var util = require('util');

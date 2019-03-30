@@ -1,5 +1,20 @@
-// Collect TODOs that I can come back to after taking the course. WebStorm will keep track of them
+var a = 3;
 
-//TODO: Read Over and Understand NodeJS Core Modules
-//TODO: Look deeper into Events and the Event Emitter
-//TODO: read up on this http://expressjs.com/en/guide/routing.html
+var b = a;
+
+var c;
+
+console.log(b);
+
+function testy(variable) {
+    c = variable;
+    return c;
+};
+testy(a);
+console.log(c);
+
+var a = 5;
+
+console.log(a);
+console.log(b);
+console.log(c);

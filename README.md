@@ -1,22 +1,5 @@
 # Learn and Understand NodeJS
 
-This is a course by Anthony Alicea that I'm taking on Udemy
-
-As much as I love taking handwritten notes, I need to get used to doing most things with my keyboard and computer, so I'll be taking notes on this README file.
-
-Since my two goals after this are to create:
-
-1) An alarm clock **butler** for my raspberry pi
-2) To rebuild my website with Node.JS, Express.JS, and ReactJS/GastsbyJS so I can have a knowledge of the website that we're planning on.
-
-These files will act as solid template to create both of those.
-
-#To-Do List
-```javascript
-//TODO: Read Over and Understand NodeJS Core Modules
-//TODO: Look deeper into Events and the Event Emitter
-```
-
 ## Conceptual Aside: Modules
 
 * Modules: A reusable block of code whose existence does not accidentally impact other code
@@ -268,7 +251,7 @@ We're calling them events because it makes it easier to think about them.
 
 events.js s where the Node.JS event emitter is
 
-#### The Event Emitter relies on **magic strings**: A strong has some special meaning in our code
+#### The Event Emitter relies on **magic strings**: A string that has some special meaning in our code
 This is bad because it makes it easy to for a typo to cause a bug, and hard for tools to help us find it.
 
 **how to deal with this!**
@@ -328,8 +311,8 @@ console.log(jane2.greet());
 **The key concept in node is that many of the things in NodeJS have events.js down their prototype chain!!!**
 
 
-#JavaScript Aside
-##Node, ES6, and Template Literals
+# JavaScript Aside
+## Node, ES6, and Template Literals
 
 Will I need a `jsconfig.json` file with
 
@@ -351,8 +334,8 @@ var hello = `Howdy, ${name}`;
 console.log(hello);
 ```
 
-#JavaScript Aside
-##.call and .apply
+# JavaScript Aside
+## .call and .apply
 ```javascript
 var obj = {
     name: 'Charles',
@@ -371,8 +354,8 @@ obj.greet.apply({name: 'User'}, ["hello", "hola"]);
 
 
 
-#JavaScript Aside
-##ES6 Classes
+# JavaScript Aside
+## ES6 Classes
 
 A new way to build objects syntactically but not under the hood which is why it is **syntatic sugar**
 
@@ -449,10 +432,10 @@ module.exports = class Foo extends EventEmitter {
 ```
 
 
-#Asynchronous Code,libuv, the event loop, streams, and more...
+# Asynchronous Code,libuv, the event loop, streams, and more...
 
-##JavaScript Aside
-###JavaScript is Synchronous
+## JavaScript Aside
+### JavaScript is Synchronous
 
 The V8 engine runs one process at a time just like JavaScript which executes one line of code at a time.
 NodeJS is asynchronous. It can do other things at a time.
