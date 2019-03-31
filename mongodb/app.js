@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://test:test@ds227664.mlab.com:27664/addressbook')
+mongoose.connect('mongodb://cpustejovsky:Quadrant2@ds223685.mlab.com:23685/address-book', { useNewUrlParser: true })
 //mongoose provides the Schema which allows us to provide the structure of a document
 const Schema = mongoose.Schema
 //names of the properties and the types of data they will store

@@ -453,11 +453,9 @@ The function calls back' invoking the function you give it when it is done doing
 Event Emitter is an object with properties which are arrays of functions.
 
 System Events
-handled by a C library called "libuv"
+handled by a C++ library called "libuv"
 
 Inside libuv is an event loop where libuv checks to see if the queue is empty to do something.
-
-**Insert Picture Diagram Here**
 
 This also allows NodeJS code to be **non-blocking**: does other things without stopping your program from running. This is made possible by Node's asynchronous nature.
 
@@ -471,7 +469,7 @@ Usually this data is being moved through a...
 
 **Stream**: A sequence of data made available over time or pieces of data that eventually combine into a whole.
 
-It is broken into **chunks**(pieces of data that are sent through a stream)
+It is broken into **chunks** (pieces of data that are sent through a stream)
 
 This allows us to process data as we go instead of waiting for it all to arrive.
 
@@ -656,7 +654,7 @@ You should only do otherwise for thoughtful and intentional reasons!
 # HTTP and being a Web Server
 ## Conceptual Aside:
 ### TCP/IP
-**Protocol:** A set of rules two sides aree on to use when communicating.
+**Protocol:** A set of rules two sides agree on to use when communicating.
 Both the client and server are programmed to understand and use that particular set of rules.
 It's similar to a lingua franca.
 
@@ -680,7 +678,7 @@ NodeJS treats packets as a stream.
 
 ## Conceptual Aside
 ### Addresses and Ports
-**Port:** Once a computr receives a packet, how it knows what program to send it to.
+**Port:** Once a computer receives a packet, how it knows what program to send it to.
 When a program is set up on the OS to receive packets from a particular port, it is said that the program is 'listening' to that port.
 
 ### HTTP
@@ -913,44 +911,4 @@ But when it's like storing data as if it were JSON, then adding fields and chang
 We're going to sacrifice hard-drive space in order to...
 
 ## MongoDB and Mongoose
-Learned by doing check out the directory
-
-## MEAN Stack!
-* **Stack:**The combination of all technologies used to build a piece of software. Your database, your server side code, your client site code, and everything else.
-* the MEAN stack is an acronym
-  * MongoDB
-  * Express
-  * AngularJS
-  * NodeJS
-* They are all JavaScript or JavaScript-like
-* So these four technologies work together very naturally
-* 
-
-## AngularJS: Managing the Client
-* Establish some things about web browsers:
-  * Just like NodeJS, Browsers are written in C++
-    * Also JS engines whch allow extra features
-  * DOM:
-    * The structre browsers use to store and manage web pages
-    * 'Document Object Mode'
-      * Browsers give JS engine the ability to manipulate the DOM
-    * DOM does not live in the JS engine, it lives in the browser.
-  * Browser:
-    * Reads the HTML in the HTTP request as a string and converts it into a hierarchy called the DOM tree
-    * HTML is structure in a tree-like fashion, so this works well!
-    * the browser then renders the DOM, not the HTML string
-    * Also executes JavaScript with its JavaScript Engine
-    * **Browsers can have different expectations which makes it cumbersome to do client-side programming**
-      * Made worse when things get even bigger!
-      * Soooo much plumbing code (code just there to make the thing happen)
-* AngularJS helps devs structure our apps and also deal with that plumbing crap
-  * It's just a bunch of JavaScript code that someone else wrote.
-  * Angular is a course unto itself
-  * But we'll be using this to help understand the A in the MEAN stack and how javascript works on the browser vs on the server
-* `../public/js/app.js` is where browser JavaScript will live
-* CDNs can help with the load our server is dealing with.
-* the Angular script tag loads AngularJS on the browser, not on the server
-* In Tony's example, he sets it up where whatever you enter into a text-box is also displayed below. All he did was bind the HTML to an Angular controller (I think...). The point being is that this ability to manipulate the DOM is painless and easy for AngularJS, a client-side framework
-  * This would be much, much more difficult for NodeJS because when you enter the text, it would have to send a request to the server and the server would have to respond with the change to the DOM.
-  * 
-
+Learned by doing so check out the directory
